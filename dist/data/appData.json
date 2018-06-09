@@ -2,29 +2,29 @@
   {
     "id": 1,
     "icon": "fa fa-couch",
-    "name": "Dzienny",
+    "name": "Living",
     "furnitureCategories": [
       {
-        "Krzesła": [
+        "Chairs": [
           {
             "catalog_id": 0,
             "name": "Krzesło gamingowe AkaRacing",
             "price": 200,
-            "category": "Krzesła",
-            "room": "Dzienny",
+            "category": "Chairs",
+            "room": "Living",
             "thumb_img": "/img/5.png",
             "img_url": "/img/chair-top.png"
           }
         ]
       },
       {
-        "TV": [
+        "TVs": [
           {
             "catalog_id": 3,
             "name": "Samsung 45 cali",
             "price": 1000,
-            "category": "TV",
-            "room": "Dzienny",
+            "category": "TVs",
+            "room": "Living",
             "thumb_img": "/img/tv.png",
             "img_url": "/img/chair-top.png"
           }
@@ -35,16 +35,16 @@
   {
     "id": 2,
     "icon": "fas fa-bed",
-    "name": "Sypialnia",
+    "name": "Bedroom",
     "furnitureCategories": [
       {
-        "Łóżka": [
+        "Beds": [
           {
             "catalog_id": 1,
             "name": "Wersalka",
             "price": 500,
-            "category": "Łóżka",
-            "room": "Sypialnia",
+            "category": "Beds",
+            "room": "Bedroom",
             "thumb_img": "/img/sofa2.png",
             "img_url": "/img/sofa2-top.png"
           },
@@ -52,8 +52,8 @@
             "catalog_id": 4,
             "name": "Mały stolik dębowy",
             "price": 300,
-            "category": "Łóżka",
-            "room": "Sypialnia",
+            "category": "Beds",
+            "room": "Bedroom",
             "thumb_img": "/img/stolik.png",
             "img_url": "/img/stolik-top.png"
           }
@@ -64,7 +64,7 @@
   {
     "id": 3,
     "icon": "fas fa-utensils",
-    "name": "Kuchnia",
+    "name": "Kitchen",
     "furnitureCategories": [
       {
         "Wanny": [
@@ -73,7 +73,7 @@
             "name": "Wielka wanna z jacuzzi",
             "price": 400,
             "category": "Wanny",
-            "room": "Kuchnia",
+            "room": "Kitchen",
             "thumb_img": "/img/wanna.png",
             "img_url": "/img/wanna-top.png"
           }
@@ -86,7 +86,7 @@
             "name": "Jakis tam prysznic duzy",
             "price": 400,
             "category": "Prysznice",
-            "room": "Łazienka",
+            "room": "Kitchen",
             "thumb_img": "/img/shower.png",
             "img_url": "/img/sofa-top.png"
           }

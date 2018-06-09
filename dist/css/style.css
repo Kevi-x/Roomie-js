@@ -1,39 +1,43 @@
 /* roboto-300 - latin */
 @font-face {
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 300;
-    src: local('Roboto Light'), local('Roboto-Light'),
-         url('../css/roboto-v18-latin-300.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-         url('../css/roboto-v18-latin-300.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-  }
-  /* roboto-regular - latin */
-  @font-face {
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400;
-    src: local('Roboto'), local('Roboto-Regular'),
-         url('../css/roboto-v18-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-         url('../css/roboto-v18-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-  }
-  /* roboto-500 - latin */
-  @font-face {
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 500;
-    src: local('Roboto Medium'), local('Roboto-Medium'),
-         url('../css/roboto-v18-latin-500.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-         url('../css/roboto-v18-latin-500.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-  }
-  /* roboto-700 - latin */
-  @font-face {
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 700;
-    src: local('Roboto Bold'), local('Roboto-Bold'),
-         url('../css/roboto-v18-latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-         url('../css/roboto-v18-latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-  }
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 300;
+  src: local("Roboto Light"), local("Roboto-Light"),
+    url("../css/roboto-v18-latin-300.woff2") format("woff2"),
+    /* Chrome 26, Opera 23, Firefox 39 */
+      url("../css/roboto-v18-latin-300.woff") format("woff"); /* Chrome 6, Firefox 3.6, IE 9, Safari 5.1+ */
+}
+/* roboto-regular - latin */
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Roboto"), local("Roboto-Regular"),
+    url("../css/roboto-v18-latin-regular.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("../css/roboto-v18-latin-regular.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* roboto-500 - latin */
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  src: local("Roboto Medium"), local("Roboto-Medium"),
+    url("../css/roboto-v18-latin-500.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("../css/roboto-v18-latin-500.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* roboto-700 - latin */
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Roboto Bold"), local("Roboto-Bold"),
+    url("../css/roboto-v18-latin-700.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("../css/roboto-v18-latin-700.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
 * {
   margin: 0;
   box-sizing: border-box;
@@ -43,7 +47,6 @@
   -ms-user-select: none;
   user-select: none;
   font-size: inherit;
-  
 }
 
 html {
@@ -58,7 +61,7 @@ html {
   background-color: #fff;
   display: flex;
   align-items: center;
-  box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.9);
+  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.9);
 }
 
 .header__nav {
@@ -69,12 +72,11 @@ html {
   justify-content: space-around;
 }
 
-.nav__logo{
-    font-size: 4rem;
-    text-transform: uppercase;
-    font-weight: 300;
-    letter-spacing: 8px;
-    
+.nav__logo {
+  font-size: 4rem;
+  text-transform: uppercase;
+  font-weight: 300;
+  letter-spacing: 8px;
 }
 
 .nav__left--list,
@@ -84,41 +86,186 @@ html {
   align-self: center;
   list-style: none;
   align-self: stretch;
-  padding:0;
-  margin:0;
-  
+  padding: 0;
+  margin: 0;
 }
 
-
-
-.nav__list--item{
-    background-color: #fff;
-    display: flex;
-    align-items: center;
-    align-self: stretch;
-    transition: all 0.3s ease-in-out;
-    
+.nav__list--item {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  transition: all 0.3s ease-in-out;
 }
 
-.nav__list--item:not(:last-child){
-    border-right: 1px solid #2f3542;
+.nav__list--item:not(:last-child) {
+  border-right: 1px solid #2f3542;
 }
 
-.nav__list--item:hover{
-    background-color: #2f3542;
-    color: #ced6e0;
+.nav__list--item:hover {
+  background-color: #2f3542;
+  color: #ced6e0;
 }
 
-.nav__list--item a:visited, .nav__list--item a:link{
-    text-decoration: none;
-    color: #2f3542;
-    padding: 0 1.2rem;
-    font-size: 3rem;
-    transition: all 0.3s ease-in-out;
+.nav__list--item a:visited,
+.nav__list--item a:link {
+  text-decoration: none;
+  color: #2f3542;
+  padding: 0 1.2rem;
+  font-size: 3rem;
+  transition: all 0.3s ease-in-out;
 }
 
-
-.nav__list--item:hover a{
-    color: #ced6e0;
+.nav__list--item:hover a {
+  color: #ced6e0;
 }
 
+/* ------------------------------ MODAL -------------------- */
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 700;
+  border-top: 1px solid #2f3542;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal__container {
+  display: flex;
+  background-color: #fefefe;
+  flex-direction: column;
+
+  border: 1px solid #888;
+  width: 50%;
+  color: #2f3542;
+}
+
+.modal__title {
+  border-bottom: 1px solid #2f3542;
+  height: 7.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3rem;
+}
+
+.modal__title h2 {
+  font-size: 3.5rem;
+}
+
+.modal__title .closeButton {
+  width: 7.5rem;
+  height: 7.5rem;
+  font-size: 4.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+}
+.modal__title .closeButton:hover {
+  background-color: #2f3542;
+  color: #ced6e0;
+}
+
+.closeIcon {
+  cursor: pointer;
+}
+
+.modal__content {
+  padding: 0 3rem;
+}
+
+.renovation-time--label {
+  font-weight: bold;
+}
+
+.modal__content--container {
+  padding: 2rem 0;
+  font-size: 2rem;
+}
+
+.modal__content--container table {
+  width: 100%;
+  color: #2f3542;
+}
+
+/* --------------- Summary ---------------- */
+.summary__index--col {
+  width: 5%;
+}
+
+.summary__name--col {
+  width: 65%;
+}
+
+.summary__price--col {
+  width: 30%;
+  font-weight: bold;
+}
+
+.summary__total-price--row {
+  height: 65px;
+  font-size: 2.5rem;
+}
+
+.summary__total-price--col {
+  width: 30%;
+  font-weight: bold;
+}
+
+.summary__paragraph {
+  padding: 30px;
+  font-size: 25px;
+  color: #2f3542;
+}
+
+/* --------------------- Renovation Time ------------------------ */
+
+.input__container {
+  padding: 5rem 6.5rem;
+  font-size: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.field__group {
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  margin-bottom: 2rem;
+}
+.field__group label {
+  flex: 0 0 20%;
+}
+.field__group input {
+  display: flex;
+  flex: 0 0 80%;
+}
+
+.renovationtime__submit {
+  margin-top: 3rem;
+  border: 1px solid #2e2e2e;
+  outline: none;
+  background-color: #fff;
+  padding: 1.5rem 4rem;
+  font-size: 2rem;
+  transition: all 0.4s ease-in-out;
+  color: #2f3542;
+  align-self: flex-start;
+}
+
+.renovationtime__submit:hover {
+  color: #ced6e0;
+  background-color: #2f3542;
+}

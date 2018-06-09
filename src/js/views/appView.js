@@ -14,8 +14,6 @@ export const createTopMenu = () => {
   document.querySelector("body").insertAdjacentHTML("afterbegin", markup);
 };
 
-
-
 /**
  * Creates room category buttons on navigation
  * @param {array} rooms array with room objects
@@ -36,12 +34,15 @@ export const initializeLeftMenu = rooms => {
  * Creates option buttons on a right side of the navigation
  */
 export const initializeRightMenu = optionsMenu => {
-    let markup = ""
-    for (let i = 0; i < optionsMenu.length; i++) {
-        markup += createMarkupForMenuButtons(optionsMenu[i].name, optionsMenu[i].icon);
-    }
+  let markup = "";
+  for (let i = 0; i < optionsMenu.length; i++) {
+    markup += createMarkupForMenuButtons(
+      optionsMenu[i].name,
+      optionsMenu[i].icon
+    );
+  }
 
-    document
+  document
     .querySelector(".nav__right--list")
     .insertAdjacentHTML("afterbegin", markup);
 };
@@ -61,4 +62,124 @@ const createMarkupForMenuButtons = (name, icon) => {
         </a>
       </li>`;
   return markup;
+};
+
+/**
+ * Creates markup for modal and adds it to html
+ */
+export const createModal = () => {
+  const markup = `<div class="modal">
+                        <div class="modal__container">
+                            <div class="modal__title">
+                                <h2 class="modal__heading"></h2>
+                                <div class="closeButton">
+                                    <i class="fas fa-times close_icon"></i>
+                                </div>
+                            </div>
+                            <div class="modal__content">
+                            </div>
+                        </div>
+                    </div>`;
+  document.querySelector(".header").insertAdjacentHTML("afterend", markup);
+};
+
+/**
+ * Creates modal content and fills it with proper data
+ * @param {array} placedFurniture furniture that are placed in the room
+ * @param {object} renovationTime objects that contains start and end date of a renovation
+ * @param {number} totalPrice total price of furniture placed in the room
+ */
+export const createModalContentWithSummary = (
+  placedFurniture,
+  renovationTime,
+  totalPrice
+) => {
+  let markup = "";
+  openModal();
+  document.querySelector(".modal__heading").innerHTML = "Summary";
+  markup += `<div class="modal__content--container">
+                        <table>
+                            <tr>
+                                <td class="renovation-time--label">Renovation Start:</td>
+                                <td>${renovationTime.start}</td>
+                            </tr>
+                            <tr>
+                                <td class="renovation-time--label">Renovation End:</td>
+                                <td>${renovationTime.start}</td>
+                            </tr> 
+                        </table>
+                `;
+  if (placedFurniture.length > 0) {
+    markup += "<table>";
+    placedFurniture.forEach((item, index) => {
+      markup += `<tr> 
+                        <td class="summary__index--col">${index + 1}.</td>
+                        <td class="summary__name--col">${item.name}</td>
+                        <td class="summary__price--col">$${item.price}</td>
+                </tr>`;
+    });
+    markup += `<tr class="summary__total-price--row">
+                        <td></td>
+                        <td>Total Price:</td>
+                        <td class="summary__total-price--col">$${totalPrice}</td>
+                </tr>`;
+    markup += "</table>";
+  } else {
+    markup += `<p class="summary__paragraph">There is no furniture in your room.</p>`;
+  }
+  document
+    .querySelector(".modal__content")
+    .insertAdjacentHTML("afterbegin", markup);
+};
+
+export const createModalContentWithRenovationTimePrompt = renovationTime => {
+  openModal();
+  document.querySelector(".modal__heading").textContent = "Renovation Time";
+
+  let markup = `<div class="input__container">
+                    <div class="field__group">
+                        <label for="dateStart">Start:</label> 
+                        <input id='dateStart' type='date' value="${
+                          renovationTime.start
+                        }">
+                    </div>`;
+
+  markup += `<div class="field__group">
+                    <label for="dateEnd">End:</label> 
+                    <input id='dateEnd' type='date' value="${
+                      renovationTime.end
+                    }">
+               </div>
+            <button class="renovationtime__submit">Save</button>
+      </div>`;
+
+  document
+    .querySelector(".modal__content")
+    .insertAdjacentHTML("beforeend", markup);
+};
+
+export const getRenovationTime = () => {
+  closeModal();
+  return [
+    document.querySelector("#dateStart").value,
+    document.querySelector("#dateEnd").value
+  ];
+};
+
+/**
+ * Opens modal after clicking on a adequate button
+ */
+const openModal = () =>
+  (document.querySelector(".modal").style.display = "flex");
+
+/**
+ * Closes modal after clicking on a "X" button or a background and clears it
+ *
+ */
+export const closeModal = () => {
+  
+    document.querySelector(".modal").style.display = "none";
+    document.querySelector(".modal__content").innerHTML = "";
+    document.querySelector(".modal__heading").innerHTML = "";
+  
 };

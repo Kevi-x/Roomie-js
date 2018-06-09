@@ -2,8 +2,6 @@ import * as appView from "./views/appView";
 import Room from "./model/Room";
 import * as helpers from "./helpers";
 
-
-
 /**
  * Stores app data
  * @property {array} roomData Data fetched from JSON file
@@ -19,32 +17,29 @@ const data = {
   rooms: [],
   totalPrice: 0,
   placedFurniture: [],
-  timespan: {
+  renovationTime: {
     start: new Date().toJSON().slice(0, 10),
     end: new Date().toJSON().slice(0, 10)
   },
-  optionsMenu:[
+  optionsMenu: [
     {
-      name: "Zmień_pokój",
+      name: "change_room",
       icon: "fas fa-clock"
     },
     {
-      name: "Czas_remontu",
+      name: "renovation_time",
       icon: "fas fa-clock"
     },
     {
-      name: "Podsumowanie",
+      name: "summary",
       icon: "fas fa-list-ul"
     },
     {
-      name: "Czyszczenie_widoku",
+      name: "clean_view",
       icon: "fas fa-trash"
-    },
+    }
   ]
-
 };
-
-
 
 window.addEventListener("load", () => {
   initialize();
@@ -57,24 +52,34 @@ const initialize = () => {
   appView.createTopMenu();
   fetchAndInitializeLeftSideMenu();
   appView.initializeRightMenu(data.optionsMenu);
+  appView.createModal();
   setupEventListeners();
 };
 
 /**
  * Fetches data from external json file with data then it initializes rooms objects and then it initializes top room menu.
- * 
+ *
  */
 const fetchAndInitializeLeftSideMenu = () => {
   fetch("data/appData.json")
     .then(response => response.json())
     .then(json => {
-    for(let i = 0; i < json.length;i++){
-      data.rooms.push(new Room(helpers.getRandom(1,9999999),json[i].name,json[i].icon, json[i].furnitureCategories))
-    }
-    return data.rooms;
-    }).then(rooms=>{
+      for (let i = 0; i < json.length; i++) {
+        data.rooms.push(
+          new Room(
+            helpers.getRandom(1, 9999999),
+            json[i].name,
+            json[i].icon,
+            json[i].furnitureCategories
+          )
+        );
+      }
+      return data.rooms;
+    })
+    .then(rooms => {
       appView.initializeLeftMenu(rooms);
-    }).catch(e=>{
+    })
+    .catch(e => {
       console.log(e);
     });
 };
@@ -83,13 +88,40 @@ const fetchAndInitializeLeftSideMenu = () => {
  * Setup event listeners
  */
 const setupEventListeners = () => {
-  document.querySelector(".nav__left--list").addEventListener('click', handleLeftSideMenuClick);
-}
+  document
+    .querySelector(".nav__left--list")
+    .addEventListener("click", handleLeftSideMenuClick);
+  document
+    .querySelector(".nav__right--list")
+    .addEventListener("click", handleRightSideMenuClick);
+  document.querySelector(".modal").addEventListener("click", e => {
+    if (e.target.matches(".modal, .closeButton, .closeButton *"))
+      appView.closeModal();
+  });
+};
 
-const handleLeftSideMenuClick = (e=>{
+const handleLeftSideMenuClick = e => {};
 
-});
+const handleRightSideMenuClick = e => {
+  const targetElement = e.target;
 
-
-
-
+  if (targetElement.matches("#change_room, #change_room *")) {
+  } else if (targetElement.matches("#renovation_time, #renovation_time *")) {
+    appView.createModalContentWithRenovationTimePrompt(data.renovationTime);
+    document
+      .querySelector(".renovationtime__submit")
+      .addEventListener("click", e => {
+        [
+          data.renovationTime.start,
+          data.renovationTime.end
+        ] = appView.getRenovationTime();
+      });
+  } else if (targetElement.matches("#summary, #summary *")) {
+    appView.createModalContentWithSummary(
+      data.placedFurniture,
+      data.renovationTime,
+      data.totalPrice
+    );
+  } else if (targetElement.matches("#clean_view, #clean_view *")) {
+  }
+};
