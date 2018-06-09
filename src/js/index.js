@@ -1,15 +1,3 @@
-// import * as mainView from "./views/mainView";
-// import * as roomView from "./views/roomView";
-// import { elements } from "./views/base";
-// import Furniture from "./models/Furniture";
-// import Room from "./models/Room";
-// import {
-//   getClosest,
-//   getChild,
-//   validateBoundaries,
-//   getDraggableObjectProps
-// } from "./helpers";
-
 import * as appView from "./views/appView";
 import Room from "./model/Room";
 import * as helpers from "./helpers";
