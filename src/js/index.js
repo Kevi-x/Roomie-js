@@ -100,7 +100,9 @@ const setupEventListeners = () => {
   });
 };
 
-const handleLeftSideMenuClick = e => {};
+const handleLeftSideMenuClick = e => {
+  
+};
 
 const handleRightSideMenuClick = e => {
   const targetElement = e.target;
@@ -115,6 +117,7 @@ const handleRightSideMenuClick = e => {
           data.renovationTime.start,
           data.renovationTime.end
         ] = appView.getRenovationTime();
+        appView.closeModal();
       });
   } else if (targetElement.matches("#summary, #summary *")) {
     appView.createModalContentWithSummary(
@@ -123,5 +126,9 @@ const handleRightSideMenuClick = e => {
       data.totalPrice
     );
   } else if (targetElement.matches("#clean_view, #clean_view *")) {
+    const confirmation = confirm("Are you sure you want delete furnitures from the room?");
+    if (confirmation && data.placedFurniture.length !== 0){
+      // removePlacedFurniture();
+    }
   }
 };

@@ -96,6 +96,8 @@ export const createModalContentWithSummary = (
 ) => {
   let markup = "";
   openModal();
+  console.log(renovationTime);
+  
   document.querySelector(".modal__heading").innerHTML = "Summary";
   markup += `<div class="modal__content--container">
                         <table>
@@ -105,7 +107,7 @@ export const createModalContentWithSummary = (
                             </tr>
                             <tr>
                                 <td class="renovation-time--label">Renovation End:</td>
-                                <td>${renovationTime.start}</td>
+                                <td>${renovationTime.end}</td>
                             </tr> 
                         </table>
                 `;
@@ -135,7 +137,6 @@ export const createModalContentWithSummary = (
 export const createModalContentWithRenovationTimePrompt = renovationTime => {
   openModal();
   document.querySelector(".modal__heading").textContent = "Renovation Time";
-
   let markup = `<div class="input__container">
                     <div class="field__group">
                         <label for="dateStart">Start:</label> 
@@ -158,8 +159,10 @@ export const createModalContentWithRenovationTimePrompt = renovationTime => {
     .insertAdjacentHTML("beforeend", markup);
 };
 
+/**
+ * @returns array with start and end date of a renovation which were selected in a renovation time prompt modal
+ */
 export const getRenovationTime = () => {
-  closeModal();
   return [
     document.querySelector("#dateStart").value,
     document.querySelector("#dateEnd").value
@@ -167,7 +170,7 @@ export const getRenovationTime = () => {
 };
 
 /**
- * Opens modal after clicking on a adequate button
+ * Opens modal after clicking on an adequate button
  */
 const openModal = () =>
   (document.querySelector(".modal").style.display = "flex");
