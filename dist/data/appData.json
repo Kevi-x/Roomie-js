@@ -2,10 +2,11 @@
   {
     "id": 1,
     "icon": "fa fa-couch",
-    "name": "Living",
+    "name": "Living_room",
     "furnitureCategories": [
       {
-        "Chairs": [
+        "category_name": "Chairs",
+        "furnitures": [
           {
             "catalog_id": 0,
             "name": "Krzesło gamingowe AkaRacing",
@@ -18,7 +19,9 @@
         ]
       },
       {
-        "TVs": [
+        "category_name": "TVs",
+
+        "furnitures": [
           {
             "catalog_id": 3,
             "name": "Samsung 45 cali",
@@ -38,14 +41,15 @@
     "name": "Bedroom",
     "furnitureCategories": [
       {
-        "Beds": [
+        "category_name": "Beds",
+        "furnitures": [
           {
             "catalog_id": 1,
             "name": "Wersalka",
             "price": 500,
             "category": "Beds",
             "room": "Bedroom",
-            "thumb_img": "/img/sofa2.png",
+            "thumb_img": "/img/tv.png",
             "img_url": "/img/sofa2-top.png"
           },
           {
@@ -67,7 +71,8 @@
     "name": "Kitchen",
     "furnitureCategories": [
       {
-        "Wanny": [
+        "category_name": "Wanny",
+        "furnitures": [
           {
             "catalog_id": 2,
             "name": "Wielka wanna z jacuzzi",
@@ -80,7 +85,8 @@
         ]
       },
       {
-        "Prysznice": [
+        "category_name": "Przysznice",
+        "furnitures": [
           {
             "catalog_id": 5,
             "name": "Jakis tam prysznic duzy",

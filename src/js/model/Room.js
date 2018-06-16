@@ -1,15 +1,42 @@
 export default class Room {
-    constructor(id, name, icon, furnituresByCaterogy){
+    constructor(id, name, icon, furnituresByCategory){
         this.id = id;
         this.name = name;
         this.icon = icon;
-        this.furnituresByCaterogy = furnituresByCaterogy;
+        this.furnituresByCategory = furnituresByCategory;
     }
 
-    getFurnitures(furnitures){
-        this.furnitures = [];
-        for (let i = 0; i < array.length; i++) {
-            this.furnitures = array[i];
+    getFurnitures(categoryName){
+        
+        
+        let categoryIndex = -1;
+        for(let i = 0; i < this.furnituresByCategory.length; i++){
+          if(categoryName === this.furnituresByCategory[i].category_name){
+            categoryIndex = i;
+          }
         }
+      
+        if(categoryIndex == -1){
+          return null;
+        }else{
+          return this.furnituresByCategory[categoryIndex].furnitures;
+        }
+      
+        
+    }
+    getCategoriesNames(){
+        this.categoriesName = [];
+        for (let i = 0; i < furnituresByCategory.length; i++) {
+            categoriesName.push(furnituresByCategory[i].category_name);
+        }
+        return this.categoriesName;
     }
 }
+
+[{
+
+},
+{
+
+}
+]

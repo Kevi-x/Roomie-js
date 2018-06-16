@@ -1,3 +1,4 @@
+import { getClosestParentOf } from "../helpers";
 /**
  * Adds navigation to HTML
  */
@@ -84,6 +85,116 @@ export const createModal = () => {
 };
 
 /**
+ * creates main markup
+ */
+export const createMain = () => {
+  const markup = `<main class=main></main>`;
+  document.querySelector(".modal").insertAdjacentHTML("afterend", markup);
+};
+
+/**
+ * Creates side panel markup
+ */
+export const createSidePanel = () => {
+  const markup = `<div class="side-panel">  
+                    <div class="side-panel__content">
+                      <div class="side-panel__title-bar">
+                          <h2 class="side-panel__heading">
+                              Living Room
+                          </h2>
+                          <div class="closeButton">
+                              <i class="fas fa-times"></i>
+                          </div>
+                      </div>
+                      <div class="side-panel__item-Box">
+                      </div>
+                  </div>
+              </div>`;
+  document.querySelector(".main").insertAdjacentHTML("afterbegin", markup);
+};
+
+export const clearSidePanel = () => {
+  document.querySelector(".side-panel__heading").innerHTML = "";
+  clearItemBox();
+  const category = document.querySelector(".side-panel__category");
+  if (category) {
+    document.querySelector(".side-panel__content").removeChild(category);
+  }
+};
+
+export const clearItemBox = () =>{ 
+  document.querySelector(".side-panel__item-Box").innerHTML = "";
+  
+}
+
+/**
+ * Opens up Side Panel
+ */
+export const openSidePanel = () => {
+  document.querySelector(".side-panel").style.transform = "translateX(0)";
+};
+
+export const changeTitleOfSidePanel = ButtonID => {
+  const headingTitle = ButtonID.replace("_", " ");
+  document.querySelector(".side-panel__heading").innerHTML = headingTitle;
+};
+
+export const createCategoryMenuInSidePanel = room => {
+  // <span class="category__expand-button"></span>
+  console.log(room.furnituresByCategory);
+  let markup = `<div class="side-panel__category">
+                    <div class="category--heading">
+                      <p>Categories</p>
+                    </div>
+                      <ul class="category__list">`;
+  for (let i = 0; i < room.furnituresByCategory.length; i++) {
+    markup += `<li class="category__list--item" data-category_name="${
+      room.furnituresByCategory[i].category_name
+    }">${room.furnituresByCategory[i].category_name}</li>`;
+  }
+
+  markup += ` </ul>
+                  </div>`;
+
+  document
+    .querySelector(".side-panel__title-bar")
+    .insertAdjacentHTML("afterend", markup);
+};
+
+export const toggleCategories = () => {
+  document
+    .querySelector(".category__list")
+    .classList.toggle("category__list--active");
+};
+
+export const createItemMarkup = (items, itemType) => {
+  let markup = '';
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i];
+    markup += `<div class="item__field" id="item_${item.catalog_id}">
+                      <div class='item__field__image--container'>
+                        <img src="${item.thumb_img}" alt="${
+      item.name
+    }" draggable="false">
+                      </div>
+                      <div class="item__field--text">
+                        <div class="item__field__title">${item.name}</div>`;
+    if (itemType === "room")
+      markup += ` <div class="item__field__price">$${item.price}</div>`;
+    markup += `</div>
+              </div>`;
+  }
+  document.querySelector(".side-panel__item-Box").insertAdjacentHTML('afterbegin',markup);
+};
+
+/**
+ * Closes Side Panel
+ */
+export const closeSidePanel = () => {
+  document.querySelector(".side-panel").style.transform = "translateX(-100%)";
+};
+
+/**
  * Creates modal content and fills it with proper data
  * @param {array} placedFurniture furniture that are placed in the room
  * @param {object} renovationTime objects that contains start and end date of a renovation
@@ -97,7 +208,7 @@ export const createModalContentWithSummary = (
   let markup = "";
   openModal();
   console.log(renovationTime);
-  
+
   document.querySelector(".modal__heading").innerHTML = "Summary";
   markup += `<div class="modal__content--container">
                         <table>
@@ -134,6 +245,10 @@ export const createModalContentWithSummary = (
     .insertAdjacentHTML("afterbegin", markup);
 };
 
+/**
+ * Fills in modal content with date inputs
+ * @param {object} renovationTime objects that contains start and end date of a renovation
+ */
 export const createModalContentWithRenovationTimePrompt = renovationTime => {
   openModal();
   document.querySelector(".modal__heading").textContent = "Renovation Time";
@@ -180,9 +295,7 @@ const openModal = () =>
  *
  */
 export const closeModal = () => {
-  
-    document.querySelector(".modal").style.display = "none";
-    document.querySelector(".modal__content").innerHTML = "";
-    document.querySelector(".modal__heading").innerHTML = "";
-  
+  document.querySelector(".modal").style.display = "none";
+  document.querySelector(".modal__content").innerHTML = "";
+  document.querySelector(".modal__heading").innerHTML = "";
 };
