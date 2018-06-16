@@ -1,5 +1,7 @@
 import * as appView from "./views/appView";
+import * as roomView from "./views/roomView";
 import Room from "./model/Room";
+import Furniture from "./model/Furniture";
 import * as helpers from "./helpers";
 
 /**
@@ -21,21 +23,25 @@ const data = {
     start: new Date().toJSON().slice(0, 10),
     end: new Date().toJSON().slice(0, 10)
   },
+  whichSideMenuIsOpened: "",
+  selectedCategory: "",
   optionsMenu: [
     {
       name: "Change_room",
       icon: "fas fa-cog",
       floors: [
         {
+          catalog_id: 0,
           name: "panele",
           thumb_img: "img/floor1.jpg",
           img: "img/floor1.jpg"
         },
         {
+          catalog_id: 1,
           name: "panele2",
           thumb_img: "img/planks-2.jpg",
           img: "img/planks-2.jpg"
-        },
+        }
       ]
     },
     {
@@ -51,7 +57,6 @@ const data = {
       icon: "fas fa-trash"
     }
   ]
-
 };
 
 window.addEventListener("load", () => {
@@ -68,6 +73,7 @@ const initialize = () => {
   appView.createModal();
   appView.createMain();
   appView.createSidePanel();
+  roomView.createMainContent();
   setupEventListeners();
 };
 
@@ -119,16 +125,25 @@ const setupEventListeners = () => {
       if (e.target.matches(".closeButton, .closeButton *"))
         appView.closeSidePanel();
     });
+
+  document
+    .querySelector(".side-panel__item-Box")
+    .addEventListener("click", handleItemFieldClick);
 };
 
 const handleLeftSideMenuClick = e => {
   appView.clearSidePanel();
   appView.openSidePanel();
-  const room = getRoomOfSpecificName(e.target);
+  const parentElement = helpers.getClosestParentOf(
+    e.target,
+    ".nav__list--item"
+  );
+  const room = getRoomOfSpecificName(parentElement.id);
 
   if (room !== null) {
     appView.createCategoryMenuInSidePanel(room);
     appView.changeTitleOfSidePanel(room.name);
+    data.whichSideMenuIsOpened = room.name;
     document.querySelector(".category__list").addEventListener("click", e => {
       appView.clearItemBox();
       controlItemShowAfterClickingOnCategory(e, room);
@@ -139,14 +154,10 @@ const handleLeftSideMenuClick = e => {
     .addEventListener("click", appView.toggleCategories);
 };
 
-const getRoomOfSpecificName = targetElement => {
-  const parentElement = helpers.getClosestParentOf(
-    targetElement,
-    ".nav__list--item"
-  );
+const getRoomOfSpecificName = id => {
   let roomIndex = -1;
   for (let i = 0; i < data.rooms.length; i++) {
-    if (parentElement.id === data.rooms[i].name) {
+    if (id === data.rooms[i].name) {
       roomIndex = i;
     }
   }
@@ -160,6 +171,7 @@ const getRoomOfSpecificName = targetElement => {
 
 const controlItemShowAfterClickingOnCategory = (e, room) => {
   const categoryName = e.target.dataset.category_name;
+  data.selectedCategory = categoryName;
   if (categoryName) {
     const furnitures = room.getFurnitures(categoryName);
     appView.createItemMarkup(furnitures, "room");
@@ -173,10 +185,9 @@ const handleRightSideMenuClick = e => {
     appView.clearSidePanel();
     appView.clearItemBox();
     appView.changeTitleOfSidePanel("Change Room");
-    console.log(data.optionsMenu[0]);
-    appView.createItemMarkup(data.optionsMenu[0].floors,"change_room");
+    appView.createItemMarkup(data.optionsMenu[0].floors, "change_room");
+    data.whichSideMenuIsOpened = "floor";
     appView.openSidePanel();
-
   } else if (targetElement.matches("#renovation_time, #renovation_time *")) {
     appView.createModalContentWithRenovationTimePrompt(data.renovationTime);
     document
@@ -196,10 +207,53 @@ const handleRightSideMenuClick = e => {
     );
   } else if (targetElement.matches("#clean_view, #clean_view *")) {
     const confirmation = confirm(
-      "Are you sure you want delete furnitures from the room?"
+      "Are you sure you want to delete furnitures from the room?"
     );
     if (confirmation && data.placedFurniture.length !== 0) {
       // removePlacedFurniture();
+    }
+  }
+};
+
+const handleItemFieldClick = e => {
+  const targetElement = e.target;
+  if (targetElement.matches(".item__field, .item__field *")) {
+    const catalog_id = helpers
+      .getClosestParentOf(targetElement, ".item__field")
+      .id.split("_")[1];
+    if (data.whichSideMenuIsOpened === "floor") {
+      const floorTexture = getFloorTextureById(catalog_id);
+      roomView.changeFloor(floorTexture);
+    } else {
+      const furnitureObj = createFurnitureObject(catalog_id);
+      roomView.renderFurnitureInRoom(furnitureObj);
+      data.totalPrice += furnitureObj.price;
+      data.placedFurniture.push(furnitureObj);
+    }
+  }
+};
+
+const createFurnitureObject = catalog_id => {
+  const room = getRoomOfSpecificName(data.whichSideMenuIsOpened);
+
+  const furniture = room.getFurniture(data.selectedCategory, catalog_id);
+  const furnitureObj = new Furniture(
+    furniture.catalog_id,
+    furniture.name,
+    furniture.price,
+    furniture.category,
+    furniture.room,
+    furniture.thumb_img,
+    furniture.img_url
+  );
+  return furnitureObj;
+};
+
+const getFloorTextureById = id => {
+  const floors = data.optionsMenu[0].floors;
+  for (let i = 0; i < floors.length; i++) {
+    if (floors[i].catalog_id == id) {
+      return floors[i].img;
     }
   }
 };

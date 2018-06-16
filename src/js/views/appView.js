@@ -100,7 +100,7 @@ export const createSidePanel = () => {
                     <div class="side-panel__content">
                       <div class="side-panel__title-bar">
                           <h2 class="side-panel__heading">
-                              Living Room
+                             
                           </h2>
                           <div class="closeButton">
                               <i class="fas fa-times"></i>
@@ -141,7 +141,6 @@ export const changeTitleOfSidePanel = ButtonID => {
 
 export const createCategoryMenuInSidePanel = room => {
   // <span class="category__expand-button"></span>
-  console.log(room.furnituresByCategory);
   let markup = `<div class="side-panel__category">
                     <div class="category--heading">
                       <p>Categories</p>
@@ -192,6 +191,7 @@ export const createItemMarkup = (items, itemType) => {
  */
 export const closeSidePanel = () => {
   document.querySelector(".side-panel").style.transform = "translateX(-100%)";
+  
 };
 
 /**

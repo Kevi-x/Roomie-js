@@ -69,7 +69,6 @@ body {
   align-items: center;
   /* box-shadow: 0px -5px 10px 1px rgba(0, 0, 0, 0.9); */
   border-bottom: 1px solid #2f35424f;
-  
 }
 
 .header__nav {
@@ -288,14 +287,15 @@ body {
 
 .side-panel {
   display: flex;
+  position: absolute;
+  z-index: 500;
   flex-direction: column;
   background-color: #fff;
-  flex: 0 0 30rem;
+  width: 30rem;
   height: 100%;
   transform: translateX(-100%);
   transition: all 0.3s ease-in;
   box-shadow: -5px 5px 10px 1px rgba(0, 0, 0, 0.9);
-  
 }
 .side-panel-active {
   transform: translateX(0);
@@ -311,17 +311,17 @@ body {
 
   display: flex;
   align-items: center;
-  flex:0 0 auto;
+  flex: 0 0 auto;
 }
 
-.side-panel__heading{
-  padding-top:1rem;
-  padding-bottom:1rem;
+.side-panel__heading {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   margin-right: auto;
   font-size: 2.5rem;
 }
 
-.side-panel__title-bar .closeButton{
+.side-panel__title-bar .closeButton {
   padding: 0 1rem;
   display: flex;
   align-items: center;
@@ -330,25 +330,24 @@ body {
   align-self: stretch;
   transition: all 0.3s ease-in-out;
   cursor: pointer;
-  
 }
 
-.side-panel__title-bar .closeButton:hover{
+.side-panel__title-bar .closeButton:hover {
   background-color: #2f3542;
   color: #ced6e0;
 }
 
 /* ------------ Category ----------- */
 
-.side-panel__category{
+.side-panel__category {
   overflow: hidden;
   flex: 0 0 auto;
 }
 
-.category--heading{
+.category--heading {
   font-size: 2.3rem;
-  padding-top:1rem;
-  padding-bottom:1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   padding-left: 1.5rem;
   padding-right: 1rem;
   display: flex;
@@ -360,98 +359,139 @@ body {
   margin-right: auto;
 }
 
-.category__expand-button{
-  position:absolute;
-  height:2.7rem;
-  width:0.5rem;
+.category__expand-button {
+  position: absolute;
+  height: 2.7rem;
+  width: 0.5rem;
   background-color: #2f3542;
-  right:1.8rem;
+  right: 1.8rem;
 }
 
-.category__expand-button::before{
+.category__expand-button::before {
   content: "";
-  height:2.7rem;
-  width:0.5rem;
+  height: 2.7rem;
+  width: 0.5rem;
   background-color: #2f3542;
-  right:1.8rem;
+  right: 1.8rem;
   transform: rotate(-90deg);
 }
 
-
-ul.category__list--active{
-  max-height:30rem;
+ul.category__list--active {
+  max-height: 30rem;
 }
 
-.category__list{
+.category__list {
   background-color: #2d3436;
-  transition: all .2s ease-in-out;
-  color:#fff;
+  transition: all 0.2s ease-in-out;
+  color: #fff;
   list-style: none;
-  padding:0;
+  padding: 0;
   max-height: 0;
-
 }
 
-.category__list--item{
-
-  padding:1rem 0rem 1rem 1.5rem;
+.category__list--item {
+  padding: 1rem 0rem 1rem 1.5rem;
   font-family: inherit;
-  font-size:1.8rem;
-  transition:all .2s;
+  font-size: 1.8rem;
+  transition: all 0.2s;
   font-weight: 300;
 }
 
-.category__list--item{
+.category__list--item {
   border-bottom: 1px solid #fff;
 }
 
-.category__list--item:hover{
-  color:#2d3436;
+.category__list--item:hover {
+  color: #2d3436;
   background-color: #fff;
   border-bottom: 1px solid #2d3436;
-
 }
-
 
 /* --------------------- ITEM BOX ----------------------- */
 .side-panel__item-Box {
-  display:flex;
+  display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   overflow-y: auto;
   overflow-x: hidden;
-  padding:1rem 0;
+  padding: 1rem 0;
 }
 
-
-.item__field{
+.item__field {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  flex:0 0 40%;
+  flex: 0 0 40%;
   padding-right: 1rem;
 }
-.item_field:nth-child(odd){
-  border-right:1px solid #2d3436;
- 
+.item_field:nth-child(odd) {
+  border-right: 1px solid #2d3436;
 }
-.item__field img{
-  width:100%;
-
+.item__field img {
+  width: 100%;
 }
 
-.item__field--text{
-  font-size:1.8rem;
+.item__field--text {
+  font-size: 1.8rem;
 }
 
-.item__field__title{
+.item__field__title {
   text-align: center;
-  
 
   font-weight: 300;
 }
-.item__field__price{
+.item__field__price {
   text-align: center;
+}
 
+/* ----------------------------- MAIN CONTENT ------------------------- */
+
+.main-content {
+  /* flex: 3 0 auto; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-image: url(../img/bg2.jpg);
+}
+
+.room {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #b2bec3;
+  height: 55rem;
+  width: 70rem;
+  background: url("/img/wall.jpg");
+  background-size: 100% 100%;
+}
+
+.floor {
+  height: 95%;
+  width: 95%;
+  background: url("/img/floor4.jpg");
+  background-size: 100% 100%;
+  box-shadow: inset 0px 0px 10px 4px rgba(0, 0, 0, 0.75);
+  position: relative;
+}
+
+/* ---------------------- FURNITURE ------------------------ */
+
+.furniture {
+  position: absolute;
+  left: 2rem;
+  top: 2rem;
+  height: 10rem;
+  background-color: orangered;
+}
+.furniture-image {
+  height: 100%;
+}
+
+.furniture-image img{
+  height:100%;
+}
+.stateIcons{
+  position:absolute;
 }
