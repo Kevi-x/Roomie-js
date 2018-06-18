@@ -207,7 +207,6 @@ export const createModalContentWithSummary = (
 ) => {
   let markup = "";
   openModal();
-  console.log(renovationTime);
 
   document.querySelector(".modal__heading").innerHTML = "Summary";
   markup += `<div class="modal__content--container">

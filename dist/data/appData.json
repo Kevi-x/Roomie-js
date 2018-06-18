@@ -9,27 +9,27 @@
         "furnitures": [
           {
             "catalog_id": 0,
-            "name": "Krzesło gamingowe AkaRacing",
+            "name": "Green armchair",
             "price": 200,
             "category": "Chairs",
             "room": "Living",
-            "thumb_img": "/img/5.png",
-            "img_url": "/img/chair-top.png"
+            "thumb_img": "/img/armchair.png",
+            "img_url": "/img/armchair.png"
           }
         ]
       },
       {
-        "category_name": "TVs",
+        "category_name": "Couches",
 
         "furnitures": [
           {
             "catalog_id": 3,
-            "name": "Samsung 45 cali",
-            "price": 1000,
-            "category": "TVs",
+            "name": "Grey couch",
+            "price": 400,
+            "category": "Couches",
             "room": "Living",
-            "thumb_img": "/img/tv.png",
-            "img_url": "/img/chair-top.png"
+            "thumb_img": "/img/couch.png",
+            "img_url": "/img/couch.png"
           }
         ]
       }
@@ -45,21 +45,12 @@
         "furnitures": [
           {
             "catalog_id": 1,
-            "name": "Wersalka",
+            "name": "Verona home bed",
             "price": 500,
             "category": "Beds",
             "room": "Bedroom",
-            "thumb_img": "/img/tv.png",
-            "img_url": "/img/sofa2-top.png"
-          },
-          {
-            "catalog_id": 4,
-            "name": "Mały stolik dębowy",
-            "price": 300,
-            "category": "Beds",
-            "room": "Bedroom",
-            "thumb_img": "/img/stolik.png",
-            "img_url": "/img/stolik-top.png"
+            "thumb_img": "/img/bed2.png",
+            "img_url": "/img/bed2.png"
           }
         ]
       }
@@ -71,30 +62,30 @@
     "name": "Kitchen",
     "furnitureCategories": [
       {
-        "category_name": "Wanny",
+        "category_name": "Ovens",
         "furnitures": [
           {
             "catalog_id": 2,
-            "name": "Wielka wanna z jacuzzi",
+            "name": "Oven",
             "price": 400,
-            "category": "Wanny",
+            "category": "Ovens",
             "room": "Kitchen",
-            "thumb_img": "/img/wanna.png",
-            "img_url": "/img/wanna-top.png"
+            "thumb_img": "/img/oven.png",
+            "img_url": "/img/oven.png"
           }
         ]
       },
       {
-        "category_name": "Przysznice",
+        "category_name": "Sinks",
         "furnitures": [
           {
             "catalog_id": 5,
-            "name": "Jakis tam prysznic duzy",
+            "name": "Sink",
             "price": 400,
-            "category": "Prysznice",
+            "category": "Sinks",
             "room": "Kitchen",
-            "thumb_img": "/img/shower.png",
-            "img_url": "/img/sofa-top.png"
+            "thumb_img": "/img/sink.png",
+            "img_url": "/img/sink.png"
           }
         ]
       }
